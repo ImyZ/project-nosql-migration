@@ -53,40 +53,42 @@ sakila-nosql-migration/
    4. **Run the migration scripts (in you project terminal):**
 
        **Migrate to Redis**
-            ```bash
-            node migrateToRedis.js
-        <!--It means:
-        Run the file migrateToRedis.js using the Node.js runtime.
-        It will connect to PostgreSQL, fetch the country and city data, and insert them into Redis. -->
+       ```bash
+       node migrateToRedis.js
+       ```
 
-      **Migrate to MongoDB**
-            ```bash
-            node migrateToMongo.js
-    <!-- It means:
-    Connect to PostgreSQL, fetch data from film, actor, category, language tables, and insert them into MongoDB. -->
+       **Migrate to MongoDB**
+       ```bash
+       node migrateToMongo.js
+       ```
     5. **Note: To verify the data was actually inserted into Redis and MongoDB:**
 
         **For Redis**
         1. **Open a Redis CLI (If you're using Docker, run this in the terminal):**
                 ```bash
                 docker exec -it redis redis-cli
+                ```
         2. **List Redis keys, once inside Redis CLI, run:**
                 ```bash
                 KEYS *
+                ```
         <!-- You should see the keys. -->
         3. **You can check a specific country:**
                 ```bash
                 GET country:1
+                ```
         <!-- If you used JSON string format, you’ll get the JSON format for the country:1 data. -->
 
         **For MongoDB**
         1. **Open a Mongodb CLI and run:**
                 ```bash
                 docker exec -it mongodb mongosh
+                ```
         2. **Once inside, run:**
                 ```bash
                 use sakila_nosql
                 show collections
+                ```
         3. **You should see collections like:**
                 actors
                 categories
@@ -95,3 +97,4 @@ sakila-nosql-migration/
         4. **You can also count them running:**
                 ```bash
                 db.films.countDocuments()
+                ```
