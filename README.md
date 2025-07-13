@@ -18,7 +18,9 @@ sakila-nosql-migration/
 
 - Node.js v18+ 
 - PostgreSQL (with Sakila schema and data loaded)  
-- Docker (for MongoDB and Redis containers), or local installs
+- Redis and MongoDB:
+  - via Docker **(recommended)**  
+  - or local installations
 
 ## Setup
 
@@ -43,53 +45,53 @@ sakila-nosql-migration/
 5. **Start Redis and MongoDB with Docker (if needed)**
    1. **Install Docker Desktop (if not already installed)**
    2. **Start Redis (in you Docker terminal):**
-      ```bash
-    docker run -d --name redis -p 6379:6379 redis
+        ```bash
+        docker run -d --name redis -p 6379:6379 redis
    3. **Start MongoDB (in you Docker terminal):**
-      ```bash
-    docker run -d --name mongodb -p 27017:27017 mongo
+        ```bash
+        docker run -d --name mongodb -p 27017:27017 mongo
    4. **Run the migration scripts (in you project terminal):**
 
        **Migrate to Redis**
             ```bash
-         node migrateToRedis.js
+            node migrateToRedis.js
         <!--It means:
         Run the file migrateToRedis.js using the Node.js runtime.
         It will connect to PostgreSQL, fetch the country and city data, and insert them into Redis. -->
 
       **Migrate to MongoDB**
             ```bash
-         node migrateToMongo.js
+            node migrateToMongo.js
     <!-- It means:
     Connect to PostgreSQL, fetch data from film, actor, category, language tables, and insert them into MongoDB. -->
     5. **Note: To verify the data was actually inserted into Redis and MongoDB:**
 
         **For Redis**
         1. **Open a Redis CLI (If you're using Docker, run this in the terminal):**
-            ```bash
-             docker exec -it redis redis-cli
+                ```bash
+                docker exec -it redis redis-cli
         2. **List Redis keys, once inside Redis CLI, run:**
-            ```bash
-             KEYS *
+                ```bash
+                KEYS *
         <!-- You should see the keys. -->
         3. **You can check a specific country:**
-            ```bash
-             GET country:1
+                ```bash
+                GET country:1
         <!-- If you used JSON string format, you’ll get the JSON format for the country:1 data. -->
 
         **For MongoDB**
         1. **Open a Mongodb CLI and run:**
-            ```bash
-             docker exec -it mongodb mongosh
+                ```bash
+                docker exec -it mongodb mongosh
         2. **Once inside, run:**
-            ```bash
-             use sakila_nosql
-             show collections
+                ```bash
+                use sakila_nosql
+                show collections
         3. **You should see collections like:**
-             actors
-             categories
-             films
-             languages
+                actors
+                categories
+                films
+                languages
         4. **You can also count them running:**
-            ```bash
-             db.films.countDocuments()
+                ```bash
+                db.films.countDocuments()
