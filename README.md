@@ -72,12 +72,10 @@ sakila-nosql-migration/
                 ```bash
                 KEYS *
                 ```
-        <!-- You should see the keys. -->
         3. **You can check a specific country:**
                 ```bash
                 GET country:1
                 ```
-        <!-- If you used JSON string format, you’ll get the JSON format for the country:1 data. -->
 
         **For MongoDB**
         1. **Open a Mongodb CLI and run:**
@@ -90,10 +88,10 @@ sakila-nosql-migration/
                 show collections
                 ```
         3. **You should see collections like:**
-                actors
-                categories
-                films
-                languages
+                - actors
+                - categories
+                - films
+                - languages
         4. **You can also count them running:**
                 ```bash
                 db.films.countDocuments()
