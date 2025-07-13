@@ -1,0 +1,20 @@
+{
+  "name": "project-nosql-migration",
+  "version": "1.0.0",
+  "description": "Migrate Sakila PostgreSQL data to Redis and MongoDB using Node.js",
+  "main": "migrateToMongo.js",
+  "type": "module",
+  "scripts": {
+    "migrate:redis": "node migrateToRedis.js",
+    "migrate:mongo": "node migrateToMongo.js"
+  },
+  "keywords": ["sakila", "migration", "redis", "mongodb", "postgresql", "nodejs"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "mongodb": "^6.17.0",
+    "pg": "^8.16.3",
+    "redis": "^5.6.0"
+  }
+}
